@@ -1,11 +1,11 @@
 package HanoiSim;
 
 public class HanoiDisk extends HanoiObject {
-    private int numberOfDisks;
+    private static int numberOfDisks;
     private int diskNumber;
 
     public HanoiDisk(){
-        ++numberOfDisks;
+        numberOfDisks++;
         this.diskNumber = numberOfDisks;
     }
 
@@ -13,7 +13,7 @@ public class HanoiDisk extends HanoiObject {
         return diskNumber;
     }
 
-    int getNumberOfDisks(){
+    static int getNumberOfDisks(){
         return numberOfDisks;
     }
 
