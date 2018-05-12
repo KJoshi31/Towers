@@ -7,6 +7,7 @@ class HanoiDisk extends HanoiObject {
     public HanoiDisk(){
         numberOfDisks++;
         this.diskNumber = numberOfDisks;
+        HanoiObject.increaseHanoiObjects();
     }
 
     int getDiskNumber(){
