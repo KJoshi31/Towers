@@ -1,6 +1,6 @@
 package HanoiSim;
 
-public class HanoiTower extends HanoiObject{
+class HanoiTower extends HanoiObject{
 
     public HanoiTower(){
 

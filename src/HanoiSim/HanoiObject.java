@@ -1,9 +1,9 @@
 package HanoiSim;
 
-public abstract class HanoiObject {
+abstract class HanoiObject {
     private int totalHanoiObjects;
     static final int TOTALNUMTOWER = 3;
 
 
-    public abstract void display();
+    abstract void display();
 }

@@ -1,6 +1,6 @@
 package HanoiSim;
 
-public class HanoiDisk extends HanoiObject {
+class HanoiDisk extends HanoiObject {
     private static int numberOfDisks;
     private int diskNumber;
 
@@ -18,7 +18,7 @@ public class HanoiDisk extends HanoiObject {
     }
 
     @Override
-    public void display() {
-
+    void display() {
+        System.out.println("Disk #"+this.getDiskNumber());
     }
 }
