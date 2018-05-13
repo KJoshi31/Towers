@@ -25,7 +25,7 @@ class HanoiTower extends HanoiObject{
     }
 
     String getTowerName(){
-        return this.towerName;
+        return this.towerName+" Tower";
     }
 
 
@@ -38,7 +38,17 @@ class HanoiTower extends HanoiObject{
     }
 
     @Override
-    public void display() {
-        System.out.println("Tower Name: "+this.getTowerName());
+    void display(){
+        System.out.print("Tower Name: "+this.getTowerName()+"\n");
+    }
+
+    public void displayTowerContents() {
+
+        System.out.print("Tower Name: "+this.getTowerName()+"\n");
+        for(HanoiDisk disk : this.diskSet){
+            System.out.print("\t");
+            disk.display();
+
+        }
     }
 }

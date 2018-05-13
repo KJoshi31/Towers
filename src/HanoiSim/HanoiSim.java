@@ -46,6 +46,36 @@ public class HanoiSim {
 
     }
 
+    void transferDisk(HanoiTower a, HanoiTower b){
+        int lastElementA = a.diskSet.size()-1;
+        b.diskSet.add(a.diskSet.remove(lastElementA));
+
+    }
+
+    void towerSimulation(int diskNum, HanoiTower fromTower, HanoiTower toTower, HanoiTower auxTower){
+        if(diskNum ==1){
+            System.out.print("Move ");
+            System.out.print("Disk #1 ");
+            System.out.print("from "+fromTower.getTowerName());
+            System.out.print(" to "+toTower.getTowerName()+"\n");
+
+            transferDisk(fromTower,toTower);
+
+            return;
+        }
+        towerSimulation(diskNum-1, fromTower, auxTower, toTower);
+        System.out.print("Move Disk #"+diskNum+" ");
+
+        System.out.print("from "+fromTower.getTowerName());
+
+        System.out.print(" to "+toTower.getTowerName()+"\n");
+
+        transferDisk(fromTower,toTower);
+
+        towerSimulation(diskNum-1, auxTower, toTower, fromTower);
+
+    }
+
 
     public static void main(String[] args){
         HanoiTower one = new HanoiTower();      //from
@@ -56,5 +86,8 @@ public class HanoiSim {
         HanoiDisk[] disks= simOne.createDisks();
 
         HanoiSim.initializeDiskSet(one, disks);
+
+        simOne.towerSimulation(one.diskSet.size(), one, three, two);
+
     }
 }

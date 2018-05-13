@@ -14,12 +14,12 @@ class HanoiDisk extends HanoiObject {
         return diskNumber;
     }
 
-    static int getNumberOfDisks(){
+    static int getTotalNumberOfDisks(){
         return numberOfDisks;
     }
 
     @Override
     void display() {
-        System.out.println("Disk #"+this.getDiskNumber());
+        System.out.print("Disk #"+this.getDiskNumber()+"\n");
     }
 }
