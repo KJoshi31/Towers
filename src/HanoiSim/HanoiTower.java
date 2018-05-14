@@ -33,15 +33,6 @@ class HanoiTower extends HanoiObject{
         return this.towerName+" Tower";
     }
 
-
-    int getDisksOnTower(){
-        return diskSet.size();
-    }
-
-    static int getTowerCount(){
-        return towerCount;
-    }
-
     @Override
     void display(){
         System.out.print("Tower Name: "+this.getTowerName()+"\n");

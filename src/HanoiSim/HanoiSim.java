@@ -1,21 +1,15 @@
 package HanoiSim;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class HanoiSim {
-    private int diskCount;
-    private static boolean simInitialized;
-
-    public HanoiSim(){
-        //throw exception that diskCount has to be passed in
-    }
+    private int diskParam;
 
     public HanoiSim(int diskAmt){
         if(diskAmt > 0){
-            this.diskCount = diskAmt;
+            this.diskParam = diskAmt;
         }else{
             /*
             throw exception that diskAmt has to be greater than 0
@@ -24,10 +18,11 @@ public class HanoiSim {
     }
 
     public HanoiDisk[] createDisks(){
-        HanoiDisk[] set = new HanoiDisk[diskCount];
-        for(int i = 0; i<diskCount; i++){
+        HanoiDisk[] set = new HanoiDisk[diskParam];
+        for(int i = 0; i< diskParam; i++){
             set[i] = new HanoiDisk();
         }
+        HanoiDisk.resetStartDiskNum();
         return set;
     }
 
@@ -90,7 +85,6 @@ public class HanoiSim {
         HanoiTower one = new HanoiTower();      //from
         HanoiTower two = new HanoiTower();      //aux
         HanoiTower three = new HanoiTower();    //to
-        int simRun = 0;
 
         System.out.println("Welcome to the Tower's of Hanoi Simulation Program");
 
@@ -107,7 +101,6 @@ public class HanoiSim {
 
                 if(option == menuOptionsArray[0]){
                     //show hanoi objects
-
 
                 }else if(option == menuOptionsArray[1]){
                     //show hanoi disks
