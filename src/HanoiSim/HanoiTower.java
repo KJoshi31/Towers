@@ -7,10 +7,15 @@ class HanoiTower extends HanoiObject{
     private String[] towerPosition = {"Left","Middle","Right"};
     private static int towerCount;
     private String towerName;
-    private int disksOnTower;
     ArrayList<HanoiDisk> diskSet = new ArrayList<HanoiDisk>();
+    private int disksOnTower = diskSet.size();
+
 
     public HanoiTower(){
+        if(towerCount==3){
+            towerCount = 0;
+        }
+
         if(towerCount <= HanoiObject.TOTALNUMTOWER){
             towerName = towerPosition[towerCount];
             towerCount++;

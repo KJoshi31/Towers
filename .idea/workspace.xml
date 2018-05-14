@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Towers/HanoiSim/HanoiSim.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Towers/HanoiSim/HanoiTower.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Towers/HanoiSim/HanoiTower.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/HanoiSim/HanoiSim.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HanoiSim/HanoiSim.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HanoiSim/HanoiTower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HanoiSim/HanoiTower.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -63,7 +67,7 @@
       <file leaf-file-name="HanoiDisk.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/HanoiSim/HanoiDisk.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
+            <state relative-caret-position="510">
               <caret line="19" selection-start-line="19" selection-end-line="19" />
               <folding>
                 <element signature="e#288#289#0" expanded="true" />
@@ -89,10 +93,11 @@
       <file leaf-file-name="HanoiTower.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/HanoiSim/HanoiTower.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="44" column="28" selection-start-line="44" selection-start-column="28" selection-end-line="44" selection-end-column="28" />
+            <state relative-caret-position="210">
+              <caret line="10" column="46" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#318#329#0" expanded="true" />
                 <element signature="e#964#965#0" expanded="true" />
                 <element signature="e#1037#1038#0" expanded="true" />
               </folding>
@@ -103,8 +108,8 @@
       <file leaf-file-name="HanoiSim.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/HanoiSim/HanoiSim.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="105" column="23" selection-start-line="105" selection-start-column="23" selection-end-line="105" selection-end-column="23" />
+            <state relative-caret-position="236">
+              <caret line="161" column="48" lean-forward="true" selection-start-line="155" selection-start-column="9" selection-end-line="161" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -134,8 +139,8 @@
       <list>
         <option value="$PROJECT_DIR$/src/sample/Main.java" />
         <option value="$PROJECT_DIR$/src/HanoiSim/HanoiObject.java" />
-        <option value="$PROJECT_DIR$/src/HanoiSim/HanoiTower.java" />
         <option value="$PROJECT_DIR$/src/HanoiSim/HanoiDisk.java" />
+        <option value="$PROJECT_DIR$/src/HanoiSim/HanoiTower.java" />
         <option value="$PROJECT_DIR$/src/HanoiSim/HanoiSim.java" />
       </list>
     </option>
@@ -354,7 +359,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35119000" />
+    <option name="totallyTimeSpent" value="38846000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
@@ -370,7 +375,7 @@
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.2850925" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.46463546" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
@@ -436,6 +441,40 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/HanoiSim/HanoiObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="47">
+          <caret line="2" column="15" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
+          <folding>
+            <element signature="e#274#275#0" expanded="true" />
+            <element signature="e#314#315#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/HanoiSim/HanoiTower.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#318#329#0" expanded="true" />
+            <element signature="e#964#965#0" expanded="true" />
+            <element signature="e#1037#1038#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/HanoiSim/HanoiSim.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="142" column="72" selection-start-line="142" selection-start-column="72" selection-end-line="142" selection-end-column="72" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/HanoiSim/HanoiDisk.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="570">
@@ -464,6 +503,7 @@
           <caret line="44" column="28" selection-start-line="44" selection-start-column="28" selection-end-line="44" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#318#329#0" expanded="true" />
             <element signature="e#964#965#0" expanded="true" />
             <element signature="e#1037#1038#0" expanded="true" />
           </folding>
@@ -508,6 +548,7 @@
           <caret line="44" column="28" selection-start-line="44" selection-start-column="28" selection-end-line="44" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#318#329#0" expanded="true" />
             <element signature="e#964#965#0" expanded="true" />
             <element signature="e#1037#1038#0" expanded="true" />
           </folding>
@@ -637,6 +678,7 @@
           <caret line="44" column="28" selection-start-line="44" selection-start-column="28" selection-end-line="44" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#318#329#0" expanded="true" />
             <element signature="e#964#965#0" expanded="true" />
             <element signature="e#1037#1038#0" expanded="true" />
           </folding>
@@ -755,6 +797,7 @@
           <caret line="44" column="28" selection-start-line="44" selection-start-column="28" selection-end-line="44" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#318#329#0" expanded="true" />
             <element signature="e#964#965#0" expanded="true" />
             <element signature="e#1037#1038#0" expanded="true" />
           </folding>
@@ -860,28 +903,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/HanoiSim/HanoiObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="47">
-          <caret line="2" column="15" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
-          <folding>
-            <element signature="e#274#275#0" expanded="true" />
-            <element signature="e#314#315#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/HanoiSim/HanoiDisk.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-          <folding>
-            <element signature="e#288#289#0" expanded="true" />
-            <element signature="e#321#322#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/java.base/jdk/internal/util/Preconditions.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="206">
@@ -898,20 +919,43 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/HanoiSim/HanoiTower.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="44" column="28" selection-start-line="44" selection-start-column="28" selection-end-line="44" selection-end-column="28" />
+        <state relative-caret-position="210">
+          <caret line="10" column="46" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#318#329#0" expanded="true" />
             <element signature="e#964#965#0" expanded="true" />
             <element signature="e#1037#1038#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/HanoiSim/HanoiObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="47">
+          <caret line="2" column="15" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
+          <folding>
+            <element signature="e#274#275#0" expanded="true" />
+            <element signature="e#314#315#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/HanoiSim/HanoiDisk.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+          <folding>
+            <element signature="e#288#289#0" expanded="true" />
+            <element signature="e#321#322#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/HanoiSim/HanoiSim.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="105" column="23" selection-start-line="105" selection-start-column="23" selection-end-line="105" selection-end-column="23" />
+        <state relative-caret-position="236">
+          <caret line="161" column="48" lean-forward="true" selection-start-line="155" selection-start-column="9" selection-end-line="161" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

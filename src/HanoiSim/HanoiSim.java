@@ -32,20 +32,7 @@ public class HanoiSim {
     }
 
     static void initializeDiskSet(HanoiTower tower, HanoiDisk...diskParam){
-
-        if(simInitialized == false){
-            tower.diskSet = new ArrayList<HanoiDisk>(Arrays.asList(diskParam));
-            //display from disk set
-//            for(HanoiDisk a : tower.diskSet){
-//                a.display();
-//            }
-            simInitialized = true;
-        }else{
-            /*
-             *throw exception that this can only happen once
-             * **/
-        }
-
+        tower.diskSet = new ArrayList<HanoiDisk>(Arrays.asList(diskParam));
     }
 
     void transferDisk(HanoiTower a, HanoiTower b){
@@ -135,6 +122,7 @@ public class HanoiSim {
 
                     HanoiSim.initializeDiskSet(one, disks);
                     simOne.towerSimulation(diskAmt, one, three, two);
+                    three.displayTowerContents();
                     simOne.resetSimulation(one,two,three);
 
                 }else if(option == menuOptionsArray[4]){
@@ -153,14 +141,13 @@ public class HanoiSim {
 
         }
 
-
-
 //        HanoiSim simOne = new HanoiSim(2);
 //        HanoiDisk[] disks= simOne.createDisks();
 //
 //        HanoiSim.initializeDiskSet(one, disks);
 //
 //        simOne.towerSimulation(one.diskSet.size(), one, three, two);
+//        simOne.resetSimulation(one,two,three);
 
     }
 }
