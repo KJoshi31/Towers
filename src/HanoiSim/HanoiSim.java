@@ -60,6 +60,30 @@ public class HanoiSim {
 
     }
 
+    static void disply(HanoiObject...hObj){
+        boolean typeCheck = false;
+        int towerIndex = 0;
+
+        for(int i = 0; i<hObj.length; i++){
+            if(hObj[i] instanceof HanoiTower){
+                towerIndex = i;
+                typeCheck = true;
+                break;
+            }
+        }
+
+        if(typeCheck ==false){
+            for(HanoiObject d: hObj){
+                d.display();
+            }
+        }else{
+            for(HanoiObject t: hObj){
+                ((HanoiTower)t).displayTowerContents();
+            }
+        }
+
+    }
+
     void resetSimulation(HanoiTower a, HanoiTower b,  HanoiTower c){
         a.diskSet = (ArrayList<HanoiDisk>) c.diskSet.clone();
         c.diskSet.clear();
@@ -93,9 +117,13 @@ public class HanoiSim {
             Scanner scan = new Scanner(System.in);
             int diskAmt = scan.nextInt();
             subGui = true;
+            boolean runOne = true;
 
             while(subGui == true){
                 menuOptions();
+                HanoiSim simOne = new HanoiSim(diskAmt);
+                HanoiDisk[] disks= simOne.createDisks();
+                HanoiSim.initializeDiskSet(one, disks);
 
                 int option = scan.nextInt();
 
@@ -104,18 +132,13 @@ public class HanoiSim {
 
                 }else if(option == menuOptionsArray[1]){
                     //show hanoi disks
-
+                    disply(disks);
                 }else if(option == menuOptionsArray[2]){
                     //show hanoi towers
-
+                    disply(one,two,three);
                 }else if(option == menuOptionsArray[3]){
                     //start simulation
-                    HanoiSim simOne = new HanoiSim(diskAmt);
-                    HanoiDisk[] disks= simOne.createDisks();
-
-                    HanoiSim.initializeDiskSet(one, disks);
                     simOne.towerSimulation(diskAmt, one, three, two);
-                    three.displayTowerContents();
                     simOne.resetSimulation(one,two,three);
 
                 }else if(option == menuOptionsArray[4]){
