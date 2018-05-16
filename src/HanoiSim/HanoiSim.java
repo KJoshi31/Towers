@@ -117,19 +117,22 @@ public class HanoiSim {
             Scanner scan = new Scanner(System.in);
             int diskAmt = scan.nextInt();
             subGui = true;
-            boolean runOne = true;
+            HanoiSim simOne = new HanoiSim(diskAmt);
+            HanoiDisk[] disks= simOne.createDisks();
+            HanoiSim.initializeDiskSet(one, disks);
 
             while(subGui == true){
                 menuOptions();
-                HanoiSim simOne = new HanoiSim(diskAmt);
-                HanoiDisk[] disks= simOne.createDisks();
-                HanoiSim.initializeDiskSet(one, disks);
+
 
                 int option = scan.nextInt();
 
                 if(option == menuOptionsArray[0]){
                     //show hanoi objects
-
+                    System.out.println("Global Objects Used: "
+                            +HanoiObject.getHanoiObjectCount());
+                    System.out.println("Disks: "+simOne.diskParam);
+                    System.out.println("Towers: "+HanoiObject.TOTALNUMTOWER);
                 }else if(option == menuOptionsArray[1]){
                     //show hanoi disks
                     disply(disks);
