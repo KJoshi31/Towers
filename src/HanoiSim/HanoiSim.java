@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class HanoiSim {
     private int diskParam;
+    private static StringBuilder steps = new StringBuilder();
 
     public HanoiSim(int diskAmt){
         if(diskAmt > 0){
@@ -38,21 +39,26 @@ public class HanoiSim {
 
     void towerSimulation(int diskNum, HanoiTower fromTower, HanoiTower toTower, HanoiTower auxTower){
         if(diskNum ==1){
-            System.out.print("Move ");
-            System.out.print("Disk #1 ");
-            System.out.print("from "+fromTower.getTowerName());
-            System.out.print(" to "+toTower.getTowerName()+"\n");
+            steps.append("Move ");
+            //System.out.print("Move ");
+            steps.append("Disk #1 ");
+            //System.out.print("Disk #1 ");
+            steps.append("from "+fromTower.getTowerName());
+            //System.out.print("from "+fromTower.getTowerName());
+            steps.append(" to "+toTower.getTowerName()+"\n");
+            //System.out.print(" to "+toTower.getTowerName()+"\n");
 
             transferDisk(fromTower,toTower);
 
             return;
         }
         towerSimulation(diskNum-1, fromTower, auxTower, toTower);
-        System.out.print("Move Disk #"+diskNum+" ");
-
-        System.out.print("from "+fromTower.getTowerName());
-
-        System.out.print(" to "+toTower.getTowerName()+"\n");
+        steps.append("Move Disk #"+diskNum+" ");
+        //System.out.print("Move Disk #"+diskNum+" ");
+        steps.append("from "+fromTower.getTowerName());
+        //System.out.print("from "+fromTower.getTowerName());
+        steps.append(" to "+toTower.getTowerName()+"\n");
+        //System.out.print(" to "+toTower.getTowerName()+"\n");
 
         transferDisk(fromTower,toTower);
 
@@ -142,6 +148,8 @@ public class HanoiSim {
                 }else if(option == menuOptionsArray[3]){
                     //start simulation
                     simOne.towerSimulation(diskAmt, one, three, two);
+                    System.out.print(steps);
+                    steps.setLength(0);
                     simOne.resetSimulation(one,two,three);
 
                 }else if(option == menuOptionsArray[4]){
