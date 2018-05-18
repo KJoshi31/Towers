@@ -1,4 +1,5 @@
-package HanoiSim;
+package TestHanoiSim;
+import HanoiSim.HanoiDisk;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 

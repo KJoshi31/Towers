@@ -1,15 +1,24 @@
 package HanoiSim;
 
-import java.io.FileNotFoundException;
 import java.util.*;
 
 public class HanoiSim {
     private int diskParam;
-    private static StringBuilder steps = new StringBuilder();
+    private StringBuilder steps = new StringBuilder();
+    private ArrayList<HanoiTower> towers = new ArrayList<HanoiTower>();
+    private HanoiDisk[] diskArray = {};
 
     public HanoiSim(int diskAmt){
         if(diskAmt > 0){
             this.diskParam = diskAmt;
+            towers.add(new HanoiTower());
+            towers.add(new HanoiTower());
+            towers.add(new HanoiTower());
+
+            diskArray = createDisks();
+
+            initializeDiskSet(towers.get(0),diskArray);
+
         }else{
             /*
             throw exception that diskAmt has to be greater than 0
@@ -17,7 +26,7 @@ public class HanoiSim {
         }
     }
 
-    public HanoiDisk[] createDisks(){
+    private HanoiDisk[] createDisks(){
         HanoiDisk[] set = new HanoiDisk[diskParam];
         for(int i = 0; i< diskParam; i++){
             set[i] = new HanoiDisk();
@@ -26,17 +35,17 @@ public class HanoiSim {
         return set;
     }
 
-    static void initializeDiskSet(HanoiTower tower, HanoiDisk...diskParam){
+    private static void initializeDiskSet(HanoiTower tower, HanoiDisk...diskParam){
         tower.diskSet = new ArrayList<HanoiDisk>(Arrays.asList(diskParam));
     }
 
-    void transferDisk(HanoiTower a, HanoiTower b){
+    private void transferDisk(HanoiTower a, HanoiTower b){
         int lastElementA = a.diskSet.size()-1;
         b.diskSet.add(a.diskSet.remove(lastElementA));
 
     }
 
-    void towerSimulation(int diskNum, HanoiTower fromTower, HanoiTower toTower, HanoiTower auxTower){
+    private void towerSimulation(int diskNum, HanoiTower fromTower, HanoiTower toTower, HanoiTower auxTower){
         if(diskNum ==1){
             steps.append("Move ");
             //System.out.print("Move ");
@@ -62,16 +71,47 @@ public class HanoiSim {
         transferDisk(fromTower,toTower);
 
         towerSimulation(diskNum-1, auxTower, toTower, fromTower);
-
     }
 
-    static void disply(HanoiObject...hObj){
+    public void runSimulation(){
+        this.towerSimulation(this.diskParam,
+                       towers.get(0),
+                       towers.get(2),
+                       towers.get(1));
+        steps.setLength(steps.length()-1);
+    }
+
+    public String getSteps(){
+        return this.steps.toString();
+    }
+
+    public void displaySteps(){
+        System.out.println(this.getSteps());
+    }
+
+    private void resetSimulation(HanoiTower a, HanoiTower b,  HanoiTower c){
+        a.diskSet = (ArrayList<HanoiDisk>) c.diskSet.clone();
+        c.diskSet.clear();
+        b.diskSet.clear();
+    }
+
+    public void reset(){
+        this.resetSimulation(this.towers.get(0),this.towers.get(1),this.towers.get(2));
+    }
+
+    public void displayDisks(){
+        this.display(diskArray);
+    }
+
+    public void displayTowers(){
+        this.display(towers.get(0),towers.get(1),towers.get(2));
+    }
+
+    private void display(HanoiObject...hObj){
         boolean typeCheck = false;
-        int towerIndex = 0;
 
         for(int i = 0; i<hObj.length; i++){
             if(hObj[i] instanceof HanoiTower){
-                towerIndex = i;
                 typeCheck = true;
                 break;
             }
@@ -89,123 +129,6 @@ public class HanoiSim {
 
     }
 
-    void resetSimulation(HanoiTower a, HanoiTower b,  HanoiTower c){
-        a.diskSet = (ArrayList<HanoiDisk>) c.diskSet.clone();
-        c.diskSet.clear();
-        b.diskSet.clear();
-    }
-
-    static void menuOptions(){
-        System.out.println("Please select an option:");
-        System.out.println("\t#1-Show Hanoi Objects");
-        System.out.println("\t#2-Show Hanoi Disks");
-        System.out.println("\t#3-Show Hanoi Towers");
-        System.out.println("\t#4-Start Simulation");
-        System.out.println("\t#5-Resize Disks");
-        System.out.println("\t#6-Exit");
-        System.out.print("Your Choice: ");
-    }
 
 
-    public static void main(String[] args){
-        boolean guiRun = true;
-        boolean subGui;
-        int[] menuOptionsArray = {1,2,3,4,5,6};
-        HanoiTower one = new HanoiTower();      //from
-        HanoiTower two = new HanoiTower();      //aux
-        HanoiTower three = new HanoiTower();    //to
-
-        System.out.println("Welcome to the Tower's of Hanoi Simulation Program");
-
-        while(guiRun==true){
-            System.out.println("Please select the amount of disks:");
-            Scanner scan = new Scanner(System.in);
-            int diskAmt = scan.nextInt();
-            subGui = true;
-            HanoiSim simOne = new HanoiSim(diskAmt);
-            HanoiDisk[] disks= simOne.createDisks();
-            HanoiSim.initializeDiskSet(one, disks);
-
-            while(subGui == true){
-                menuOptions();
-                int option;
-                Scanner optionInput = new Scanner(System.in);
-                try{
-                    option = optionInput.nextInt();
-                }catch(InputMismatchException ex){
-                    option = 99;
-                }
-
-                if(option == menuOptionsArray[0]){
-                    //show hanoi objects
-                    System.out.println("Global Objects Used: "
-                            +HanoiObject.getHanoiObjectCount());
-                    System.out.println("Disks: "+simOne.diskParam);
-                    System.out.println("Towers: "+HanoiObject.TOTALNUMTOWER);
-                }else if(option == menuOptionsArray[1]){
-                    //show hanoi disks
-                    disply(disks);
-                }else if(option == menuOptionsArray[2]){
-                    //show hanoi towers
-                    disply(one,two,three);
-                }else if(option == menuOptionsArray[3]){
-                    //start simulation
-                    simOne.towerSimulation(diskAmt, one, three, two);
-                    System.out.print(steps);
-
-                    System.out.println("Would you like to save the steps? (Y/N)");
-                    Scanner choice = new Scanner(System.in);
-                    String saveChoice = choice.nextLine();
-
-                    if(saveChoice.toUpperCase().equals("Y")){
-                        System.out.println("Enter a file name with extension:");
-                        Scanner fileInput = new Scanner(System.in);
-                        String fileName = fileInput.nextLine();
-
-                        System.out.println("Enter the path of the directory to save file:");
-                        Scanner directoryInput = new Scanner(System.in);
-                        String directory = directoryInput.nextLine()+"\\";
-
-                        Formatter stepsWrite = null;
-                        try{
-                            stepsWrite = new Formatter(directory+fileName);
-                            stepsWrite.format(steps.toString());
-                        }catch (FileNotFoundException ex){
-                            System.out.println("Directory & File Combination is invalid");
-                            steps.setLength(0);
-                            simOne.resetSimulation(one,two,three);
-                            continue;
-                        }
-                        stepsWrite.close();
-                        System.out.println("Save Success, Please check: "+directory+fileName);
-                    }
-
-                    steps.setLength(0);
-                    simOne.resetSimulation(one,two,three);
-
-                }else if(option == menuOptionsArray[4]){
-                    //resize disks
-
-                    subGui = false;
-                }else if(option == menuOptionsArray[5]){
-                    //exit
-
-                    subGui = false;
-                    guiRun = false;
-                }else{
-                    System.out.println("Sorry, please select a valid option");
-                }
-            }
-
-        }
-
-//        HanoiSim simOne = new HanoiSim(2);
-//        HanoiDisk[] disks= simOne.createDisks();
-//
-//        HanoiSim.initializeDiskSet(one, disks);
-//
-//        simOne.towerSimulation(one.diskSet.size(), one, three, two);
-//        simOne.resetSimulation(one,two,three);
-
-    }
 }

@@ -1,9 +1,8 @@
 package HanoiSim;
 
-abstract class HanoiObject {
+public abstract class HanoiObject {
     private static int totalHanoiObjects;
     static final int TOTALNUMTOWER = 3;
-
 
     abstract void display();
 
@@ -11,7 +10,7 @@ abstract class HanoiObject {
         totalHanoiObjects++;
     }
 
-    static int getHanoiObjectCount(){
+    public static int getHanoiObjectCount(){
         return totalHanoiObjects;
     }
 }

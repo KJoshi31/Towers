@@ -3,7 +3,7 @@ package HanoiSim;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-class HanoiTower extends HanoiObject{
+public class HanoiTower extends HanoiObject{
     private String[] towerPosition = {"Left","Middle","Right"};
     private static int towerCount;
     private String towerName;
@@ -29,8 +29,12 @@ class HanoiTower extends HanoiObject{
         }
     }
 
-    String getTowerName(){
+    public String getTowerName(){
         return this.towerName+" Tower";
+    }
+
+    public static int getTowerCount(){
+        return towerCount;
     }
 
     @Override

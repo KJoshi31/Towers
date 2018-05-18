@@ -1,6 +1,8 @@
-package HanoiSim;
+package TestHanoiSim;
 
 import HanoiSim.HanoiSim;
+import HanoiSim.HanoiTower;
+import HanoiSim.HanoiDisk;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
@@ -19,9 +21,9 @@ public class TestSim {
 
         HanoiSim simTest = new HanoiSim(randomDiskNum);
 
-        Object o[] = simTest.createDisks();
+        HanoiDisk[] diskArray = simTest.createDisks();
 
-        Assertions.assertEquals(o.length,randomDiskNum);
+        Assertions.assertEquals(diskArray.length,randomDiskNum);
     }
 
     @Test
