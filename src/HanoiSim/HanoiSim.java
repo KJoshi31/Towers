@@ -1,8 +1,7 @@
 package HanoiSim;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.io.FileNotFoundException;
+import java.util.*;
 
 public class HanoiSim {
     private int diskParam;
@@ -129,9 +128,13 @@ public class HanoiSim {
 
             while(subGui == true){
                 menuOptions();
-
-
-                int option = scan.nextInt();
+                int option;
+                Scanner optionInput = new Scanner(System.in);
+                try{
+                    option = optionInput.nextInt();
+                }catch(InputMismatchException ex){
+                    option = 99;
+                }
 
                 if(option == menuOptionsArray[0]){
                     //show hanoi objects
@@ -149,6 +152,34 @@ public class HanoiSim {
                     //start simulation
                     simOne.towerSimulation(diskAmt, one, three, two);
                     System.out.print(steps);
+
+                    System.out.println("Would you like to save the steps? (Y/N)");
+                    Scanner choice = new Scanner(System.in);
+                    String saveChoice = choice.nextLine();
+
+                    if(saveChoice.toUpperCase().equals("Y")){
+                        System.out.println("Enter a file name with extension:");
+                        Scanner fileInput = new Scanner(System.in);
+                        String fileName = fileInput.nextLine();
+
+                        System.out.println("Enter the path of the directory to save file:");
+                        Scanner directoryInput = new Scanner(System.in);
+                        String directory = directoryInput.nextLine()+"\\";
+
+                        Formatter stepsWrite = null;
+                        try{
+                            stepsWrite = new Formatter(directory+fileName);
+                            stepsWrite.format(steps.toString());
+                        }catch (FileNotFoundException ex){
+                            System.out.println("Directory & File Combination is invalid");
+                            steps.setLength(0);
+                            simOne.resetSimulation(one,two,three);
+                            continue;
+                        }
+                        stepsWrite.close();
+                        System.out.println("Save Success, Please check: "+directory+fileName);
+                    }
+
                     steps.setLength(0);
                     simOne.resetSimulation(one,two,three);
 
