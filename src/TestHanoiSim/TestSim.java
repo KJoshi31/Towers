@@ -17,68 +17,21 @@ public class TestSim {
     @Test
     public void testCreateDisks(){
 
-        int randomDiskNum = r.nextInt(high-low)+low;
-
-        HanoiSim simTest = new HanoiSim(randomDiskNum);
-
-        HanoiDisk[] diskArray = simTest.createDisks();
-
-        Assertions.assertEquals(diskArray.length,randomDiskNum);
     }
 
     @Test
     public void testInitDisk(){
-        int randomDiskNum = r.nextInt(high-low)+low;
-        HanoiTower a = new HanoiTower();
-        HanoiTower b = new HanoiTower();
-        HanoiTower c = new HanoiTower();
 
-        HanoiSim simTest = new HanoiSim(randomDiskNum);
-        HanoiDisk[] disks =  simTest.createDisks();
-        HanoiSim.initializeDiskSet(a,disks);
-
-        Assertions.assertEquals(a.diskSet.size(),randomDiskNum);
     }
 
     @Test
     public void testResetSim(){
-        int high = 15;
-        int randomDiskNum = r.nextInt(high-low)+low;
-        HanoiTower a = new HanoiTower();
-        HanoiTower b = new HanoiTower();
-        HanoiTower c = new HanoiTower();
-
-        HanoiSim simTest = new HanoiSim(randomDiskNum);
-        HanoiDisk[] disks =  simTest.createDisks();
-        HanoiSim.initializeDiskSet(a,disks);
-        simTest.towerSimulation(randomDiskNum,a,c,b);
-
-        simTest.resetSimulation(a,b,c);
-
-        Assertions.assertEquals(a.diskSet.size(),randomDiskNum);
-        Assertions.assertEquals(b.diskSet.size(),0);
-        Assertions.assertEquals(c.diskSet.size(),0);
-
 
     }
 
     @Test
     public void testTowerSimulation(){
-        int high = 15;
-        int randomDiskNum = r.nextInt(high-low)+low;
-        HanoiTower a = new HanoiTower();
-        HanoiTower b = new HanoiTower();
-        HanoiTower c = new HanoiTower();
 
-        HanoiSim simTest = new HanoiSim(randomDiskNum);
-        HanoiDisk[] disks =  simTest.createDisks();
-        HanoiSim.initializeDiskSet(a,disks);
-
-        simTest.towerSimulation(randomDiskNum,a,c,b);
-
-        Assertions.assertEquals(c.diskSet.size(),randomDiskNum);
-        Assertions.assertEquals(a.diskSet.size(),0);
-        Assertions.assertEquals(b.diskSet.size(),0);
     }
 
 }

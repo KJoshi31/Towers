@@ -26,17 +26,12 @@ public class TestTower {
         for (int i = 0; i<towerList.size(); i++){
             Assertions.assertEquals(towerNames[i%3]+" Tower",towerList.get(i).getTowerName());
         }
+
+        towerList.clear();
     }
 
     @Test
     public void testTowerCount(){
-        int randomTowerAmt = r.nextInt(high-low)+low;
-        ArrayList<HanoiTower> towerList = new ArrayList<HanoiTower>();
 
-        for(int i = 0; i<randomTowerAmt; i++){
-            towerList.add(new HanoiTower());
-        }
-
-        Assertions.assertEquals(randomTowerAmt, HanoiTower.getHanoiObjectCount());
     }
 }

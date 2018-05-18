@@ -25,18 +25,7 @@ public class TestDisk {
 
     @Test
     public void testDiskNum(){
-        int randomDiskNum = r.nextInt(high-low)+low;
-        ArrayList<HanoiDisk> diskHolder = new ArrayList<HanoiDisk>();
 
-        for(int i =0; i<randomDiskNum;i++){
-            diskHolder.add(new HanoiDisk());
-        }
-
-        int counter = 1;
-        for (HanoiDisk d: diskHolder){
-            Assertions.assertEquals(d.getDiskNumber(),counter);
-            counter++;
-        }
     }
 
 }

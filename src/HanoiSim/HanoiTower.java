@@ -10,7 +10,6 @@ public class HanoiTower extends HanoiObject{
     ArrayList<HanoiDisk> diskSet = new ArrayList<HanoiDisk>();
     private int disksOnTower = diskSet.size();
 
-
     public HanoiTower(){
         if(towerCount==3){
             towerCount = 0;
