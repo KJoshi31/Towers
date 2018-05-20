@@ -16,7 +16,7 @@ public class HanoiDisk extends HanoiObject {
         return diskNumber;
     }
 
-    static void resetStartDiskNum(){
+    public static void resetStartDiskNum(){
         startDiskNum = 1;
     }
 
