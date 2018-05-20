@@ -1,6 +1,7 @@
 package sample;
 
 import HanoiSim.*;
+import InputOutputLogic.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,6 +23,8 @@ public class Main extends Application {
         HanoiSim simOne = new HanoiSim(2);
         simOne.runSimulation();
         simOne.displaySteps();
+        HanoiFileLogic.saveSteps(simOne.getSteps());
+
 
     }
 }
