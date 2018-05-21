@@ -134,23 +134,33 @@ public class HanoiSim {
         int fileStepCounter = 0;
 
         for(String w: wordArray){
-            if(w.equals("Move")){
+            if(w.equals("Move")||w.equals("move")){
                 fileStepCounter++;
             }
         }
 
         int projectNumberOfDisks = getProjectedDisks(fileStepCounter);
-        System.out.println("Number of projected disks: "+projectNumberOfDisks);
+        //System.out.println("Number of projected disks: "+projectNumberOfDisks);
 
         HanoiSim analysis = new HanoiSim(projectNumberOfDisks);
         analysis.runSimulation();
 
-        System.out.println(analysis.getSteps().equals(fileStringParam));
+        //System.out.println(analysis.getSteps().equals(fileStringParam));
 
+        if(analysis.getSteps().equals(fileStringParam)) {
+            System.out.print("Number of Disks: " + projectNumberOfDisks + "\n" +
+                    "Step Iterations: " + fileStepCounter);
+        }else{
+            System.out.println("Mismatch with steps & disks in data");
+            System.out.println("Please upload a file with valid steps/data");
+        }
 
     }
 
     private int getProjectedDisks(int projectedStepCount){
+        if(projectedStepCount<=3){
+            return (int) Math.log(projectedStepCount)+1;
+        }
         return (int) Math.ceil(Math.log(projectedStepCount))+1;
     }
 

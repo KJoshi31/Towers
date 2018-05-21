@@ -20,10 +20,9 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        HanoiSim simOne = new HanoiSim(4);
+        HanoiSim simOne = new HanoiSim(6);
         simOne.runSimulation();
-        //simOne.displaySteps();
-        //HanoiFileLogic.saveSteps(simOne.getSteps());
+        HanoiFileLogic.saveSteps(simOne.getSteps());
         String readSteps = HanoiFileLogic.readSteps();
         simOne.analyzeFileData(readSteps);
     }

@@ -13,7 +13,7 @@ public class HanoiFileLogic {
         System.out.println("Please Enter the file name:");
         String fileName = readInput.nextLine();
 
-        return readStepFile(fileName,directory).toString();
+        return readStepFile(fileName,directory).toString().trim();
     }
 
     private static StringBuilder readStepFile(String fileNameParam, String directoryParam){
@@ -41,10 +41,11 @@ public class HanoiFileLogic {
 
 
             while(stepsFile.hasNext()){
-                stepsFromFile.append(stepsFile.nextLine()+"\n");
+                stepsFromFile.append(stepsFile.nextLine().trim()+"\n");
             }
             stepsFromFile.setLength(stepsFromFile.length()-1);
 
+        stepsFile.close();
         return stepsFromFile;
     }
 
