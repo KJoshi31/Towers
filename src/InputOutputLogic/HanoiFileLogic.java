@@ -1,10 +1,52 @@
 package InputOutputLogic;
 
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.Formatter;
 import java.util.Scanner;
 
 public class HanoiFileLogic {
+
+    public static String readSteps(){
+        Scanner readInput = new Scanner(System.in);
+        System.out.println("Please Enter the directory where the file is located:");
+        String directory = readInput.nextLine();
+        System.out.println("Please Enter the file name:");
+        String fileName = readInput.nextLine();
+
+        return readStepFile(fileName,directory).toString();
+    }
+
+    private static StringBuilder readStepFile(String fileNameParam, String directoryParam){
+        String fullPath;
+        StringBuilder stepsFromFile = new StringBuilder();
+
+        if(directoryParam.length() == 0 || directoryParam.equals("")){
+            fullPath = fileNameParam;
+        }else{
+            if(directoryParam.endsWith("\\")){
+                fullPath = directoryParam+fileNameParam;
+            }else{
+                fullPath = directoryParam+"\\"+fileNameParam;
+            }
+        }
+
+        Scanner stepsFile = null;
+
+        try{
+            stepsFile =  new Scanner(new File(fullPath));
+        } catch (FileNotFoundException ex){
+            System.out.println("File could not be opened!");
+            System.out.println("Directory+File Name combo invalid.");
+        }
+
+
+            while(stepsFile.hasNext()){
+                stepsFromFile.append(stepsFile.nextLine()+"\n");
+            }
+            stepsFromFile.setLength(stepsFromFile.length()-1);
+
+        return stepsFromFile;
+    }
 
     public static void saveSteps(String stepsParam){
         Scanner saveInput = new Scanner(System.in);
@@ -20,13 +62,20 @@ public class HanoiFileLogic {
 
         Formatter output = null;
 
-        if(directoryParam.endsWith("\\")){
-            directoryParam = directoryParam.substring(0,directoryParam.length()-1);
-            System.out.println(directoryParam);
+        String fullPath;
+
+        if(directoryParam.length() == 0 || directoryParam.equals("")){
+            fullPath = fileNameParam;
+        }else{
+            if(directoryParam.endsWith("\\")){
+                fullPath = directoryParam+fileNameParam;
+            }else{
+                fullPath = directoryParam+"\\"+fileNameParam;
+            }
         }
 
         try{
-            output = new Formatter(directoryParam+"\\"+fileNameParam);
+            output = new Formatter(fullPath);
         } catch (FileNotFoundException ex){
             System.out.println("Steps could not be saved!");
             System.out.println("Directory+File Name combo invalid.");
