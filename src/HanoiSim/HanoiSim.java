@@ -129,6 +129,30 @@ public class HanoiSim {
 
     }
 
+    public void analyzeFileData(String fileStringParam) {
+        String[] wordArray = fileStringParam.split("\\s+");
+        int fileStepCounter = 0;
+
+        for(String w: wordArray){
+            if(w.equals("Move")){
+                fileStepCounter++;
+            }
+        }
+
+        int projectNumberOfDisks = getProjectedDisks(fileStepCounter);
+        System.out.println("Number of projected disks: "+projectNumberOfDisks);
+
+        HanoiSim analysis = new HanoiSim(projectNumberOfDisks);
+        analysis.runSimulation();
+
+        System.out.println(analysis.getSteps().equals(fileStringParam));
+
+
+    }
+
+    private int getProjectedDisks(int projectedStepCount){
+        return (int) Math.ceil(Math.log(projectedStepCount))+1;
+    }
 
 
 }
