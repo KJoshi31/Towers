@@ -29,11 +29,11 @@ public class TestTower {
 
     @Test
     public void testTowerName() {
-        System.out.println(randomTowerAmt);
+        //System.out.println(randomTowerAmt);
         String[] towerNames = {"Left", "Middle", "Right"};
         for (int i = 0; i < towerList.size(); i++) {
-            System.out.println("i: " + i);
-            System.out.println(towerList.get(0).getTowerName());
+            //System.out.println("i: " + i);
+            //System.out.println(towerList.get(0).getTowerName());
             Assertions.assertEquals(towerNames[i % 3] + " Tower",
                     towerList.get(i).getTowerName());
         }
@@ -43,7 +43,6 @@ public class TestTower {
 
     @Test
     public void testGlobalTowerCount() {
-        HanoiTower.resetGlobalTowerCount();
         Assertions.assertEquals(randomTowerAmt, HanoiTower.getGlobalTowerCount());
         HanoiTower.resetGlobalTowerCount();
     }
