@@ -1,6 +1,6 @@
 package HanoiSim;
 
-class HanoiDisk extends HanoiObject {
+public class HanoiDisk extends HanoiObject {
     private static int numberOfDisks;
     private int diskNumber;
     private static int startDiskNum=1;
@@ -12,15 +12,15 @@ class HanoiDisk extends HanoiObject {
         HanoiObject.increaseHanoiObjects();
     }
 
-    int getDiskNumber(){
+    public int getDiskNumber(){
         return diskNumber;
     }
 
-    static void resetStartDiskNum(){
+    public static void resetStartDiskNum(){
         startDiskNum = 1;
     }
 
-    static int getTotalNumberOfDisks(){
+    public static int getTotalNumberOfDisks(){
         return numberOfDisks;
     }
 
