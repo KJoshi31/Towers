@@ -20,17 +20,12 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        HanoiSim simOne = new HanoiSim(7);
+        HanoiSim simOne = new HanoiSim(3);
         simOne.runSimulation();
-
-        HanoiFileLogic.saveSteps(simOne.getSteps());
-
-
-        HanoiFileLogic fileLogic = new HanoiFileLogic();
-
-        String steps = HanoiFileLogic.readSteps();
-
-        fileLogic.analyzeFileData(steps);
+        System.out.println("Disks:");
+        System.out.println(simOne.displayDisks());
+        System.out.println("Towers:");
+        System.out.println(simOne.displayTowers());
 
     }
 }
