@@ -47,17 +47,18 @@ public class HanoiTower extends HanoiObject{
     public int getDisksOnTower(){return disksOnTower;}
 
     @Override
-    void display(){
-        System.out.print("Tower Name: "+this.getTowerName()+"\n");
+    String display(){
+        return ("Tower Name: "+this.getTowerName()+"\n");
     }
 
-    public void displayTowerContents() {
-
-        System.out.print("Tower Name: "+this.getTowerName()+"\n");
+    public String displayTowerContents() {
+        StringBuilder contents = new StringBuilder();
+        contents.append("Tower Name: "+this.getTowerName()+"\n");
         for(HanoiDisk disk : this.diskSet){
-            System.out.print("\t");
-            disk.display();
+            contents.append("\t");
+            contents.append(disk.display());
 
         }
+        return contents.toString();
     }
 }
