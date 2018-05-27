@@ -1,12 +1,13 @@
 package TestHanoiSim;
 
 import HanoiSim.HanoiTower;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import static junit.framework.TestCase.assertEquals;
 
 public class TestTower {
 
@@ -16,7 +17,7 @@ public class TestTower {
     ArrayList<HanoiTower> towerList;
     int randomTowerAmt;
 
-    @BeforeEach
+
     private void setUp() {
         randomTowerAmt = r.nextInt(high - low) + low;
         towerList = new ArrayList<>();
@@ -30,11 +31,12 @@ public class TestTower {
     @Test
     public void testTowerName() {
         //System.out.println(randomTowerAmt);
+        setUp();
         String[] towerNames = {"Left", "Middle", "Right"};
         for (int i = 0; i < towerList.size(); i++) {
             //System.out.println("i: " + i);
             //System.out.println(towerList.get(0).getTowerName());
-            Assertions.assertEquals(towerNames[i % 3] + " Tower",
+            assertEquals(towerNames[i % 3] + " Tower",
                     towerList.get(i).getTowerName());
         }
         HanoiTower.resetGlobalTowerCount();
@@ -43,17 +45,19 @@ public class TestTower {
 
     @Test
     public void testGlobalTowerCount() {
-        Assertions.assertEquals(randomTowerAmt, HanoiTower.getGlobalTowerCount());
+        setUp();
+        assertEquals(randomTowerAmt, HanoiTower.getGlobalTowerCount());
         HanoiTower.resetGlobalTowerCount();
     }
 
     @Test
     public void testLocalTowerCount() {
+        setUp();
         int[] localTowerCount = new int[randomTowerAmt];
         for (int i = 0; i < randomTowerAmt; i++) {
             localTowerCount[i] = HanoiTower.getLocalTowerCount();
         }
-        Assertions.assertEquals(localTowerCount[randomTowerAmt - 1], HanoiTower.getLocalTowerCount());
+        assertEquals(localTowerCount[randomTowerAmt - 1], HanoiTower.getLocalTowerCount());
         HanoiTower.resetGlobalTowerCount();
     }
 }

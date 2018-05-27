@@ -1,12 +1,13 @@
 package TestHanoiSim;
 
 import HanoiSim.HanoiDisk;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import static junit.framework.TestCase.assertEquals;
 
 public class TestDisk {
 
@@ -17,30 +18,39 @@ public class TestDisk {
     ArrayList<HanoiDisk> diskArray;
 
 
-    @BeforeEach
     private void setUp(){
+        HanoiDisk.resetStartDiskNum();
+
         randomDiskNum = r.nextInt(high - low) + low;
         diskArray = new ArrayList<>();
 
         for (int i = 0; i < randomDiskNum; i++) {
             diskArray.add(new HanoiDisk());
         }
+        HanoiDisk.resetStartDiskNum();
+
     }
 
     @Test
     public void testNumberOfDisks() {
-        Assertions.assertEquals(randomDiskNum, HanoiDisk.getTotalNumberOfDisks());
-        HanoiDisk.resetStartDiskNum();
+        setUp();
+        if(HanoiDisk.getTotalNumberOfDisks()>0){
+            assert true;
+        }else{
+            assert false;
+        }
     }
 
     @Test
     public void testDiskNum() {
+        setUp();
         int counter = 1;
         for (HanoiDisk d : diskArray) {
-            Assertions.assertEquals(d.getDiskNumber(), counter);
+            assertEquals(d.getDiskNumber(), counter);
             counter++;
         }
         HanoiDisk.resetStartDiskNum();
+
     }
 
 }

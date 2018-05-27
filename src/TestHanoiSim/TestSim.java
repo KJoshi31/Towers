@@ -2,11 +2,13 @@ package TestHanoiSim;
 
 import HanoiSim.HanoiSim;
 import HanoiSim.HanoiTower;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import static junit.framework.TestCase.assertEquals;
 
 public class TestSim {
 
@@ -27,7 +29,7 @@ public class TestSim {
         String testSteps = "Move Disk #1 from Left Tower to Middle Tower\n" +
                 "Move Disk #2 from Left Tower to Right Tower\n" +
                 "Move Disk #1 from Middle Tower to Right Tower";
-        Assertions.assertEquals(testSteps, testSim.getSteps());
+        assertEquals(testSteps, testSim.getSteps());
     }
 
     @Test
@@ -39,7 +41,7 @@ public class TestSim {
         }
 
         for (int i = 0; i < simList.size() - 1; i++) {
-            Assertions.assertNotEquals(simList.get(i)
+            assertEquals(simList.get(i)
                     .getSteps(), simList.get(i + 1).getSteps());
         }
 
