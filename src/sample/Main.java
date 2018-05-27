@@ -1,7 +1,7 @@
 package sample;
 
 import HanoiSim.*;
-import InputOutputLogic.*;
+import IO_Utils.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,10 +20,12 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        HanoiSim simOne = new HanoiSim(6);
+        HanoiSim simOne = new HanoiSim(3);
         simOne.runSimulation();
-        HanoiFileLogic.saveSteps(simOne.getSteps());
-        String readSteps = HanoiFileLogic.readSteps();
-        simOne.analyzeFileData(readSteps);
+        System.out.println("Disks:");
+        System.out.println(simOne.displayDisks());
+        System.out.println("Towers:");
+        System.out.println(simOne.displayTowers());
+
     }
 }

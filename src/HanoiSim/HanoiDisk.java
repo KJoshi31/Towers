@@ -25,7 +25,7 @@ public class HanoiDisk extends HanoiObject {
     }
 
     @Override
-    void display() {
-        System.out.print("Disk #"+this.getDiskNumber()+"\n");
+    String display() {
+        return("Disk #"+this.getDiskNumber()+"\n");
     }
 }

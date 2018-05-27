@@ -1,5 +1,7 @@
 package HanoiSim;
 
+import IO_Utils.DisplayUtil;
+
 import java.util.*;
 
 public class HanoiSim {
@@ -99,70 +101,21 @@ public class HanoiSim {
         this.resetSimulation(this.towers.get(0),this.towers.get(1),this.towers.get(2));
     }
 
-    public void displayDisks(){
-        this.display(diskArray);
+    public String displayDisks(){
+        return this.display(diskArray);
     }
 
-    public void displayTowers(){
-        this.display(towers.get(0),towers.get(1),towers.get(2));
+    public String displayTowers(){
+        return this.display(towers.get(0),towers.get(1),towers.get(2));
     }
 
-    private void display(HanoiObject...hObj){
-        boolean typeCheck = false;
-
-        for(int i = 0; i<hObj.length; i++){
-            if(hObj[i] instanceof HanoiTower){
-                typeCheck = true;
-                break;
-            }
-        }
-
-        if(typeCheck ==false){
-            for(HanoiObject d: hObj){
-                d.display();
-            }
-        }else{
-            for(HanoiObject t: hObj){
-                ((HanoiTower)t).displayTowerContents();
-            }
-        }
-
+    private String display(HanoiObject...hObj){
+        DisplayUtil<HanoiObject> a = new DisplayUtil();
+        a.setH(hObj);
+        return a.displayTool();
     }
 
-    public void analyzeFileData(String fileStringParam) {
-        String[] wordArray = fileStringParam.split("\\s+");
-        int fileStepCounter = 0;
 
-        for(String w: wordArray){
-            if(w.equals("Move")||w.equals("move")){
-                fileStepCounter++;
-            }
-        }
-
-        int projectNumberOfDisks = getProjectedDisks(fileStepCounter);
-        //System.out.println("Number of projected disks: "+projectNumberOfDisks);
-
-        HanoiSim analysis = new HanoiSim(projectNumberOfDisks);
-        analysis.runSimulation();
-
-        //System.out.println(analysis.getSteps().equals(fileStringParam));
-
-        if(analysis.getSteps().equals(fileStringParam)) {
-            System.out.print("Number of Disks: " + projectNumberOfDisks + "\n" +
-                    "Step Iterations: " + fileStepCounter);
-        }else{
-            System.out.println("Mismatch with steps & disks in data");
-            System.out.println("Please upload a file with valid steps/data");
-        }
-
-    }
-
-    private int getProjectedDisks(int projectedStepCount){
-        if(projectedStepCount<=3){
-            return (int) Math.log(projectedStepCount)+1;
-        }
-        return (int) Math.ceil(Math.log(projectedStepCount))+1;
-    }
 
 
 }
