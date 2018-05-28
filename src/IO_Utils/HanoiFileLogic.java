@@ -119,10 +119,14 @@ public class HanoiFileLogic {
     }
 
     private int getProjectedDisks(int projectedStepCount){
-        if(projectedStepCount<=3){
-            return (int) Math.log(projectedStepCount)+1;
+        int numDisks = 0;
+        for(int disks =1; true; disks++){
+            if((Math.pow(2,disks))-1==projectedStepCount){
+                numDisks = disks;
+                break;
+            }
         }
-        return (int) Math.ceil(Math.log(projectedStepCount))+1;
+        return numDisks;
     }
 
 }
