@@ -20,6 +20,7 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
+        //max disk amount is 22
         HanoiSim simOne = new HanoiSim(3);
         simOne.runSimulation();
         System.out.println("Disks:");
