@@ -12,7 +12,7 @@ import java.util.Random;
 
 import static junit.framework.TestCase.assertEquals;
 
-public class testDisplayUtil {
+public class TestDisplayUtil {
 
     int low = 1;
     int high = 1000;
