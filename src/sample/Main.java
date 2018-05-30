@@ -8,6 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.Scanner;
+
 public class Main extends Application {
 
     @Override
@@ -21,8 +23,15 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         //max disk amount is 22
-        HanoiSim simOne = new HanoiSim(3);
-        simOne.runSimulation();
+
+        System.out.println("Enter Amount of Disks:");
+        Scanner input = new Scanner(System.in);
+        int diskNum = Integer.parseInt( input.next().trim() );
+
+        HanoiSim simOne = new HanoiSim(diskNum);
+        String time = MethodTimer.timeSimulation(simOne,'y');
+        System.out.println(time);
+
         System.out.println("Disks:");
         System.out.println(simOne.displayDisks());
         System.out.println("Towers:");
