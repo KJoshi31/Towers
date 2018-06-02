@@ -3,29 +3,61 @@ package IO_Utils;
 import HanoiSim.HanoiSim;
 
 import java.io.*;
-import java.util.Formatter;
-import java.util.List;
-import java.util.Scanner;
+import java.lang.reflect.Array;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class HanoiFileLogic {
 
-    public static void exportSim(List<HanoiSim> simList){
+    public static void exportSimConfig(List<Integer> configList){
         String fileName = "simConfig.dat";
         String fullPath = fileName;
 
         try(ObjectOutputStream outfile = new ObjectOutputStream(
                 new FileOutputStream(fullPath)
         );){
-
-            for(int i = 0; i<simList.size(); i++){
-                outfile.writeObject(simList.indexOf(i));
+            for (int i = 0; i<configList.size(); i++){
+                outfile.writeObject(configList.get(i));
             }
-
 
         }catch (IOException ex){
 
         }
 
+        //System.out.println("export done");
+
+    }
+
+    public static int[] importSimConfig(){
+        String fileName = "simConfig.dat";
+        String fullPath = fileName;
+        ArrayList<Integer> configList = new ArrayList<>();
+
+        try(ObjectInputStream infile= new ObjectInputStream(
+                new FileInputStream(fullPath));){
+
+            while(true){
+                configList.add((Integer) infile.readObject());
+            }
+
+        }catch (EOFException ex) {
+            System.out.println("Finished Reading");
+
+        }catch(IOException ex){
+            System.out.println("IO Exception");
+
+        }catch (ClassNotFoundException ex){
+
+        }
+
+
+        int[] configArray = new int[configList.size()];
+
+        for(int j = 0; j< configArray.length; j++){
+            configArray[j] =configList.get(j);
+        }
+
+        return configArray;
     }
 
     public static String readSteps(){

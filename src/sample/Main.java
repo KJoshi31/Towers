@@ -8,6 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -24,22 +26,16 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         //max disk amount is 22
-
         System.out.println("Enter Amount of Disks:");
         Scanner input = new Scanner(System.in);
         int diskNum = Integer.parseInt( input.next().trim() );
 
         HanoiSim simOne = new HanoiSim(diskNum);
-        String time = MethodTimer.timeSimulation(simOne,'y');
-        System.out.println(time);
 
-        System.out.println("Disks:");
-        System.out.println(simOne.displayDisks());
-        System.out.println("Towers:");
-        System.out.println(simOne.displayTowers());
+        HanoiFileLogic.exportSimConfig(Arrays.asList(2,4,6,20));
 
-        HanoiFileLogic.exportSim(List.of(simOne));
-        System.out.println("Exported!");
+        int[] configList = HanoiFileLogic.importSimConfig();
+
 
     }
 }
