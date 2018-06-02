@@ -4,9 +4,29 @@ import HanoiSim.HanoiSim;
 
 import java.io.*;
 import java.util.Formatter;
+import java.util.List;
 import java.util.Scanner;
 
 public class HanoiFileLogic {
+
+    public static void exportSim(List<HanoiSim> simList){
+        String fileName = "simConfig.dat";
+        String fullPath = fileName;
+
+        try(ObjectOutputStream outfile = new ObjectOutputStream(
+                new FileOutputStream(fullPath)
+        );){
+
+            for(int i = 0; i<simList.size(); i++){
+                outfile.writeObject(simList.indexOf(i));
+            }
+
+
+        }catch (IOException ex){
+
+        }
+
+    }
 
     public static String readSteps(){
         Scanner readInput = new Scanner(System.in);

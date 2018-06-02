@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Main extends Application {
@@ -36,6 +37,9 @@ public class Main extends Application {
         System.out.println(simOne.displayDisks());
         System.out.println("Towers:");
         System.out.println(simOne.displayTowers());
+
+        HanoiFileLogic.exportSim(List.of(simOne));
+        System.out.println("Exported!");
 
     }
 }
