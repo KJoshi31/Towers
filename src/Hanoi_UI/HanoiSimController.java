@@ -1,9 +1,14 @@
 package Hanoi_UI;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+
+import HanoiSim.HanoiSim;
+import java.lang.Math;
 
 public class HanoiSimController {
 
@@ -17,8 +22,28 @@ public class HanoiSimController {
     @FXML private TextField disksTextField;
     @FXML private TextArea stepsTextArea;
 
-    public void initialize(){
+    //hanoiSim object used for other operations
+    //diskNumber used for functionality
+    private HanoiSim hSimObject;
+    private int diskNumber = 1;
 
+    public void initialize(){
+        disksTextField.textProperty().setValue(Integer.toString(diskNumber));
+
+
+        diskSlider.valueProperty().addListener(
+                new ChangeListener<Number>() {
+                    @Override
+                    public void changed(ObservableValue<? extends Number> observable,
+                                        Number oldValue, Number newValue) {
+
+                        if(diskNumber!= newValue.intValue()){
+                            diskNumber = (int) Math.ceil(newValue.intValue());
+                            System.out.println(diskNumber);
+                            disksTextField.textProperty().setValue(Integer.toString(diskNumber));
+                        }
+                    }
+                });
     }
 
 }
