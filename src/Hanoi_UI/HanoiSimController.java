@@ -8,6 +8,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import HanoiSim.HanoiSim;
+
+import javafx.event.ActionEvent;
 import java.lang.Math;
 
 public class HanoiSimController {
@@ -44,6 +46,17 @@ public class HanoiSimController {
                         }
                     }
                 });
+    }
+
+    private void resetControls(){
+
+    }
+
+    @FXML
+    private void runSimulation(ActionEvent event){
+        hSimObject = new HanoiSim(diskNumber);
+        hSimObject.runSimulation();
+        stepsTextArea.setText(hSimObject.getSteps());
     }
 
 }
