@@ -74,7 +74,11 @@ public class HanoiSimController {
         hSimObject = new HanoiSim(diskNumber);
         hSimObject.runSimulation();
         steps = hSimObject.getSteps();
-        stepsTextArea.setText(steps);
+
+        HanoiFileLogic analyzer = new HanoiFileLogic();
+        String analysis = analyzer.analyzeFileData(steps);
+
+        stepsTextArea.setText(analysis+"\n"+"-----\n"+steps);
     }
 
     @FXML
@@ -83,6 +87,7 @@ public class HanoiSimController {
         stepsTextArea.clear();
         diskSlider.valueProperty().setValue(1);
         disksTextField.textProperty().setValue(Integer.toString(1));
+        steps = "";
         hSimObject = null;
     }
 
@@ -92,29 +97,57 @@ public class HanoiSimController {
         String buttonID = selectedButton.getId();
 
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extensionFilter =
-                new FileChooser.ExtensionFilter("HT file (*.ht)", "*.ht");
+        FileChooser.ExtensionFilter stepExt =
+                new FileChooser.ExtensionFilter("HT file (*.hStep)", "*.hStep");
 
-        fileChooser.getExtensionFilters().add(extensionFilter);
+        FileChooser.ExtensionFilter configExt =
+                new FileChooser.ExtensionFilter("HT file (*.hConfig)", "*.hConfig");
 
-        Node source = (Node) event.getSource();
-        Window currentStage = source.getScene().getWindow();
+        FileChooser.ExtensionFilter textExt =
+                new FileChooser.ExtensionFilter("txt file (*.txt)", "*.txt");
 
         File file = null;
 
         if(buttonID.equals("saveStepsButton")) {
+            fileChooser.getExtensionFilters().add(stepExt);
+            fileChooser.getExtensionFilters().add(textExt);
+
+            Node source = (Node) event.getSource();
+            Window currentStage = source.getScene().getWindow();
+
             file = fileChooser.showSaveDialog(currentStage);
             if (file != null) {
                 System.out.println(file);
+                HanoiFileLogic.saveSteps(steps,file);
             }
         }else if(buttonID.equals("loadStepsButton")){
+            fileChooser.getExtensionFilters().add(stepExt);
+            fileChooser.getExtensionFilters().add(textExt);
+
+            Node source = (Node) event.getSource();
+            Window currentStage = source.getScene().getWindow();
+
             file = fileChooser.showOpenDialog(currentStage);
 
             if(file != null){
                 System.out.println(file);
+                disableControls();
+                steps = HanoiFileLogic.readSteps(file);
+
+                HanoiFileLogic analyzer = new HanoiFileLogic();
+                String analysis =  analyzer.analyzeFileData(steps);
+
+                stepsTextArea.setText(analysis+"\n"+"-----\n"+steps);
+                disksTextField.setText("N/A");
+
 
             }
         }else if(buttonID.equals("saveConfigButton")){
+            fileChooser.getExtensionFilters().add(configExt);
+
+            Node source = (Node) event.getSource();
+            Window currentStage = source.getScene().getWindow();
+
             file = fileChooser.showSaveDialog(currentStage);
             if (file != null) {
                 System.out.println(file);
@@ -122,6 +155,11 @@ public class HanoiSimController {
             }
 
         }else if(buttonID.equals("loadConfigButton")){
+            fileChooser.getExtensionFilters().add(configExt);
+
+            Node source = (Node) event.getSource();
+            Window currentStage = source.getScene().getWindow();
+
             file = fileChooser.showOpenDialog(currentStage);
 
             if(file != null){

@@ -17,7 +17,6 @@ public class HanoiFileLogic {
                 outfile.writeObject(configList.get(i));
             }
 
-            outfile.close();
         }catch (IOException ex){
 
         }
@@ -60,89 +59,49 @@ public class HanoiFileLogic {
         return configArray;
     }
 
-    public static String readSteps(){
-        Scanner readInput = new Scanner(System.in);
-        System.out.println("Please Enter the directory where the file is located:");
-        String directory = readInput.nextLine();
-        System.out.println("Please Enter the file name:");
-        String fileName = readInput.nextLine();
+    public static String readSteps(File fileParam){
 
-        return readStepFile(fileName,directory).toString().trim();
+        return readStepFile(fileParam).toString();
     }
 
-    private static StringBuilder readStepFile(String fileNameParam, String directoryParam){
-        String fullPath;
-        StringBuilder stepsFromFile = new StringBuilder();
+    private static StringBuilder readStepFile(File fileParam){
+        StringBuilder stepsString = new StringBuilder();
 
-        if(directoryParam.length() == 0 || directoryParam.equals("")){
-            fullPath = fileNameParam;
-        }else{
-            if(directoryParam.endsWith("\\")){
-                fullPath = directoryParam+fileNameParam;
-            }else{
-                fullPath = directoryParam+"\\"+fileNameParam;
+        try (DataInputStream infile = new DataInputStream(new FileInputStream(fileParam));)
+        {
+
+            while(true){
+                stepsString.append(infile.readUTF());
             }
+
+        }catch (EOFException ex){
+            System.out.println("End of file");
+        }catch (IOException ex){
+            System.out.println("IO Exceoption");
         }
-
-        Scanner stepsFile = null;
-
-        try{
-            stepsFile =  new Scanner(new File(fullPath));
-        } catch (FileNotFoundException ex){
-            System.out.println("File could not be opened!");
-            System.out.println("Directory+File Name combo invalid.");
-        }
-
-
-            while(stepsFile.hasNext()){
-                stepsFromFile.append(stepsFile.nextLine().trim()+"\n");
-            }
-            stepsFromFile.setLength(stepsFromFile.length()-1);
-
-        stepsFile.close();
-        return stepsFromFile;
+        return stepsString;
     }
 
-    public static void saveSteps(String stepsParam){
-        Scanner saveInput = new Scanner(System.in);
-        System.out.println("Please Enter the directory to save the file:");
-        String directory = saveInput.nextLine();
-        System.out.println("Please Enter the file name:");
-        String fileName = saveInput.nextLine();
+    public static void saveSteps(String stepsParam, File filepath){
 
-        saveStepFile(fileName,directory,stepsParam);
+        saveStepFile(stepsParam, filepath);
     }
 
-    private static void saveStepFile(String fileNameParam, String directoryParam, String steps){
+    private static void saveStepFile(String steps, File filepath){
 
-        Formatter output = null;
-
-        String fullPath;
-
-        if(directoryParam.length() == 0 || directoryParam.equals("")){
-            fullPath = fileNameParam;
-        }else{
-            if(directoryParam.endsWith("\\")){
-                fullPath = directoryParam+fileNameParam;
-            }else{
-                fullPath = directoryParam+"\\"+fileNameParam;
-            }
+        try (DataOutputStream  outfile = new DataOutputStream (new FileOutputStream(filepath));)
+        {
+           outfile.writeUTF(steps.trim());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-        try{
-            output = new Formatter(fullPath);
-        } catch (FileNotFoundException ex){
-            System.out.println("Steps could not be saved!");
-            System.out.println("Directory+File Name combo invalid.");
-        }
-
-        output.format(steps);
-        output.close();
-        System.out.println("Save Successful");
 
     }
 
-    public void analyzeFileData(String fileStringParam) {
+    public String analyzeFileData(String fileStringParam) {
         String[] wordArray = fileStringParam.split("\\s+");
         int fileStepCounter = 0;
 
@@ -160,14 +119,17 @@ public class HanoiFileLogic {
 
         //System.out.println(analysis.getSteps().equals(fileStringParam));
 
+        String returnString;
+
         if(analysis.getSteps().equals(fileStringParam)) {
-            System.out.print("Number of Disks: " + projectNumberOfDisks + "\n" +
+            returnString = ("Number of Disks: " + projectNumberOfDisks + "\n" +
                     "Step Iterations: " + fileStepCounter);
         }else{
-            System.out.println("Mismatch with steps & disks in data");
-            System.out.println("Please upload a file with valid steps/data");
+            returnString = ("Mismatch with steps & disks in data\n")+
+                    ("Please upload a file with valid steps/data");
         }
 
+        return returnString;
     }
 
     private int getProjectedDisks(int projectedStepCount){
