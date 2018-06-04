@@ -3,18 +3,15 @@ package IO_Utils;
 import HanoiSim.HanoiSim;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.*;
-import java.util.stream.Collectors;
+
 
 public class HanoiFileLogic {
 
-    public static void exportSimConfig(List<Integer> configList){
-        String fileName = "simConfig.dat";
-        String fullPath = fileName;
+    public static void exportSimConfig(List<Integer> configList, File filePath){
 
         try(ObjectOutputStream outfile = new ObjectOutputStream(
-                new FileOutputStream(fullPath)
+                new FileOutputStream(filePath)
         );){
             for (int i = 0; i<configList.size(); i++){
                 outfile.writeObject(configList.get(i));
