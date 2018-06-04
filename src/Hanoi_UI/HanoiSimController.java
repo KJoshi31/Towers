@@ -83,6 +83,7 @@ public class HanoiSimController {
         stepsTextArea.clear();
         diskSlider.valueProperty().setValue(1);
         disksTextField.textProperty().setValue(Integer.toString(1));
+        steps = "";
         hSimObject = null;
     }
 
@@ -106,6 +107,7 @@ public class HanoiSimController {
             file = fileChooser.showSaveDialog(currentStage);
             if (file != null) {
                 System.out.println(file);
+                HanoiFileLogic.saveSteps(steps,file);
             }
         }else if(buttonID.equals("loadStepsButton")){
             file = fileChooser.showOpenDialog(currentStage);

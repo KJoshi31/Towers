@@ -103,42 +103,22 @@ public class HanoiFileLogic {
         return stepsFromFile;
     }
 
-    public static void saveSteps(String stepsParam){
-        Scanner saveInput = new Scanner(System.in);
-        System.out.println("Please Enter the directory to save the file:");
-        String directory = saveInput.nextLine();
-        System.out.println("Please Enter the file name:");
-        String fileName = saveInput.nextLine();
+    public static void saveSteps(String stepsParam, File filepath){
 
-        saveStepFile(fileName,directory,stepsParam);
+        saveStepFile(stepsParam, filepath);
     }
 
-    private static void saveStepFile(String fileNameParam, String directoryParam, String steps){
+    private static void saveStepFile(String steps, File filepath){
 
-        Formatter output = null;
-
-        String fullPath;
-
-        if(directoryParam.length() == 0 || directoryParam.equals("")){
-            fullPath = fileNameParam;
-        }else{
-            if(directoryParam.endsWith("\\")){
-                fullPath = directoryParam+fileNameParam;
-            }else{
-                fullPath = directoryParam+"\\"+fileNameParam;
-            }
+        try (DataOutputStream  outfile = new DataOutputStream (new FileOutputStream(filepath));)
+        {
+           outfile.writeUTF(steps);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-        try{
-            output = new Formatter(fullPath);
-        } catch (FileNotFoundException ex){
-            System.out.println("Steps could not be saved!");
-            System.out.println("Directory+File Name combo invalid.");
-        }
-
-        output.format(steps);
-        output.close();
-        System.out.println("Save Successful");
 
     }
 
