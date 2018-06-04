@@ -29,8 +29,8 @@
          <content>
             <VBox prefHeight="0.0" prefWidth="195.0">
                <children>
-                  <Button fx:id="saveStepsButton" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Save Steps" />
-                  <Button fx:id="loadStepsButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Load Steps">
+                  <Button fx:id="saveStepsButton" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#saveLoadSteps" text="Save Steps" />
+                  <Button fx:id="loadStepsButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#saveLoadSteps" text="Load Steps">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin></Button>
@@ -45,8 +45,8 @@
          <content>
             <VBox prefHeight="0.0" prefWidth="195.0">
                <children>
-                  <Button fx:id="saveConfigButton" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Save Config" />
-                  <Button fx:id="loadConfigButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Load Config">
+                  <Button fx:id="saveConfigButton" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#saveLoadSteps" text="Save Config" />
+                  <Button fx:id="loadConfigButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#saveLoadSteps" text="Load Config">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin></Button>
