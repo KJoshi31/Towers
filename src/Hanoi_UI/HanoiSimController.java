@@ -1,4 +1,5 @@
 package Hanoi_UI;
+import IO_Utils.HanoiFileLogic;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -16,6 +17,8 @@ import javafx.stage.Window;
 
 import java.io.File;
 import java.lang.Math;
+import java.util.Arrays;
+import java.util.List;
 
 public class HanoiSimController {
 
@@ -113,7 +116,7 @@ public class HanoiSimController {
             file = fileChooser.showSaveDialog(currentStage);
             if (file != null) {
                 System.out.println(file);
-
+                HanoiFileLogic.exportSimConfig(List.of(diskNumber), file);
             }
 
         }else if(buttonID.equals("loadConfigButton")){
