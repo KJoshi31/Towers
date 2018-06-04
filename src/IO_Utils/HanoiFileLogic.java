@@ -17,21 +17,24 @@ public class HanoiFileLogic {
                 outfile.writeObject(configList.get(i));
             }
 
+            outfile.close();
         }catch (IOException ex){
 
         }
+
 
         //System.out.println("export done");
 
     }
 
-    public static int[] importSimConfig(){
-        String fileName = "simConfig.dat";
-        String fullPath = fileName;
+    public static int[] importSimConfig(File filepath){
+        //String fileName = "simConfig.dat";
+        //String fullPath = fileName;
+
         ArrayList<Integer> configList = new ArrayList<>();
 
         try(ObjectInputStream infile= new ObjectInputStream(
-                new FileInputStream(fullPath));){
+                new FileInputStream(filepath));){
 
             while(true){
                 configList.add((Integer) infile.readObject());

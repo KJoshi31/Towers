@@ -81,6 +81,8 @@ public class HanoiSimController {
     private void resetSimulation(ActionEvent event){
         disableControls();
         stepsTextArea.clear();
+        diskSlider.valueProperty().setValue(1);
+        disksTextField.textProperty().setValue(Integer.toString(1));
         hSimObject = null;
     }
 
@@ -124,7 +126,11 @@ public class HanoiSimController {
 
             if(file != null){
                 System.out.println(file);
+                diskNumber = HanoiFileLogic.importSimConfig(file)[0];
+                System.out.println(diskNumber);
 
+                diskSlider.valueProperty().setValue(diskNumber);
+                disksTextField.textProperty().setValue(Integer.toString(diskNumber));
             }
         }
     }
