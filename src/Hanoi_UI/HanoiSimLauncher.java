@@ -13,6 +13,7 @@ public class HanoiSimLauncher extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("TowersOfHanoi.fxml"));
         stage.setTitle("Towers");
         stage.setScene(new Scene(root));
+        stage.setResizable(false);
         stage.show();
     }
 

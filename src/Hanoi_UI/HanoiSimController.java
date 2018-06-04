@@ -48,15 +48,30 @@ public class HanoiSimController {
                 });
     }
 
-    private void resetControls(){
-
+    private void disableControls(){
+        resetSimButton.setDisable(!resetSimButton.isDisabled());
+        runSimButton.setDisable(!runSimButton.isDisabled());
+        diskSlider.setDisable(!diskSlider.isDisabled());
+        saveStepsButton.setDisable(!saveStepsButton.isDisabled());
+        saveConfigButton.setDisable(!saveConfigButton.isDisabled());
+        loadConfigButton.setDisable(!loadConfigButton.isDisabled());
+        loadStepsButton.setDisable(!loadStepsButton.isDisabled());
     }
 
     @FXML
     private void runSimulation(ActionEvent event){
+        disableControls();
+
         hSimObject = new HanoiSim(diskNumber);
         hSimObject.runSimulation();
         stepsTextArea.setText(hSimObject.getSteps());
+    }
+
+    @FXML
+    private void resetSimulation(ActionEvent event){
+        disableControls();
+        stepsTextArea.clear();
+        hSimObject = null;
     }
 
 }

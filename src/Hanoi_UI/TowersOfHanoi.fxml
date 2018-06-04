@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="533.0" prefWidth="593.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Hanoi_UI.HanoiSimController">
+<GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="533.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Hanoi_UI.HanoiSimController">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -45,7 +45,7 @@
          <content>
             <VBox prefHeight="0.0" prefWidth="195.0">
                <children>
-                  <Button fx:id="saveConfigButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Save Config" />
+                  <Button fx:id="saveConfigButton" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Save Config" />
                   <Button fx:id="loadConfigButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Load Config">
                      <VBox.margin>
                         <Insets top="5.0" />
@@ -59,7 +59,7 @@
             <VBox prefHeight="575.0" prefWidth="195.0">
                <children>
                   <Button fx:id="runSimButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#runSimulation" text="Run Simulation" />
-                  <Button fx:id="resetSimButton" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Reset Simulation">
+                  <Button fx:id="resetSimButton" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#resetSimulation" text="Reset Simulation">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin></Button>
