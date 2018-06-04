@@ -2,6 +2,7 @@ package Hanoi_UI;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
@@ -10,6 +11,10 @@ import javafx.scene.control.TextField;
 import HanoiSim.HanoiSim;
 
 import javafx.event.ActionEvent;
+import javafx.stage.FileChooser;
+import javafx.stage.Window;
+
+import java.io.File;
 import java.lang.Math;
 
 public class HanoiSimController {
@@ -28,6 +33,7 @@ public class HanoiSimController {
     //diskNumber used for functionality
     private HanoiSim hSimObject;
     private int diskNumber = 1;
+    private String steps;
 
     public void initialize(){
         disksTextField.textProperty().setValue(Integer.toString(diskNumber));
@@ -64,7 +70,8 @@ public class HanoiSimController {
 
         hSimObject = new HanoiSim(diskNumber);
         hSimObject.runSimulation();
-        stepsTextArea.setText(hSimObject.getSteps());
+        steps = hSimObject.getSteps();
+        stepsTextArea.setText(steps);
     }
 
     @FXML
@@ -72,6 +79,51 @@ public class HanoiSimController {
         disableControls();
         stepsTextArea.clear();
         hSimObject = null;
+    }
+
+    @FXML
+    private void saveLoadSteps(ActionEvent event){
+        Button selectedButton = (Button) event.getSource();
+        String buttonID = selectedButton.getId();
+
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extensionFilter =
+                new FileChooser.ExtensionFilter("HT file (*.ht)", "*.ht");
+
+        fileChooser.getExtensionFilters().add(extensionFilter);
+
+        Node source = (Node) event.getSource();
+        Window currentStage = source.getScene().getWindow();
+
+        File file = null;
+
+        if(buttonID.equals("saveStepsButton")) {
+            file = fileChooser.showSaveDialog(currentStage);
+            if (file != null) {
+                System.out.println(file);
+            }
+        }else if(buttonID.equals("loadStepsButton")){
+            file = fileChooser.showOpenDialog(currentStage);
+
+            if(file != null){
+                System.out.println(file);
+
+            }
+        }else if(buttonID.equals("saveConfigButton")){
+            file = fileChooser.showSaveDialog(currentStage);
+            if (file != null) {
+                System.out.println(file);
+
+            }
+
+        }else if(buttonID.equals("loadConfigButton")){
+            file = fileChooser.showOpenDialog(currentStage);
+
+            if(file != null){
+                System.out.println(file);
+
+            }
+        }
     }
 
 }
