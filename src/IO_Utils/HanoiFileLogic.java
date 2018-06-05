@@ -4,6 +4,9 @@ import HanoiSim.HanoiSim;
 
 import java.io.*;
 import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 public class HanoiFileLogic {
@@ -102,14 +105,17 @@ public class HanoiFileLogic {
     }
 
     public String analyzeFileData(String fileStringParam) {
-        String[] wordArray = fileStringParam.split("\\s+");
+        Stream<String> wordArray = Stream.of(fileStringParam.split("\\s+"));
         int fileStepCounter = 0;
 
-        for(String w: wordArray){
-            if(w.equals("Move")||w.equals("move")){
-                fileStepCounter++;
-            }
-        }
+        List<String> moveList;
+
+        Predicate<String> move = s -> s.equals("move") || s.equals("Move");
+
+        moveList = wordArray.filter(move)
+                .collect(Collectors.toList());
+
+        fileStepCounter = moveList.size();
 
         int projectNumberOfDisks = getProjectedDisks(fileStepCounter);
         //System.out.println("Number of projected disks: "+projectNumberOfDisks);
@@ -133,7 +139,7 @@ public class HanoiFileLogic {
     }
 
     private int getProjectedDisks(int projectedStepCount){
-        int numDisks = 0;
+        int numDisks = 1;
         for(int disks =1; true; disks++){
             if((Math.pow(2,disks))-1==projectedStepCount){
                 numDisks = disks;
