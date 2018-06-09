@@ -84,8 +84,8 @@ public class HanoiSimController {
 
         HanoiFileLogic analyzer = new HanoiFileLogic();
         String analysis = analyzer.analyzeFileData(steps);
-
-        stepsTextArea.setText(analysis+"\n"+"-----\n"+steps);
+        String globalAvg =  Hanoi_DB.getAverageMilliseconds(diskNumber);
+        stepsTextArea.setText(analysis+"\n"+globalAvg+"\n"+"-----\n"+steps);
     }
 
     @FXML
