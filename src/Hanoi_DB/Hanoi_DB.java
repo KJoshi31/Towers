@@ -60,13 +60,6 @@ public class Hanoi_DB {
 
     public static void insertSimTim(int diskNum, long milliseconds) throws SQLException{
 
-//        Statement statement = conn.createStatement();
-//
-//        ResultSet resultSet =
-//                statement.executeQuery("select max (id) as \"max_ID\" from simulationTimer");
-//
-//        int newID = resultSet.getInt("max_ID")+1;
-
         String insertRecord = ("insert into simulationTimer(diskNumber,time) values(?,?)");
 
         try(PreparedStatement preparedStatement = conn.prepareStatement(insertRecord)){
