@@ -1,5 +1,7 @@
 package Hanoi_UI;
+import Hanoi_DB.Hanoi_DB;
 import IO_Utils.HanoiFileLogic;
+import IO_Utils.MethodTimer;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -17,6 +19,7 @@ import javafx.stage.Window;
 
 import java.io.File;
 import java.lang.Math;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -68,12 +71,16 @@ public class HanoiSimController {
     }
 
     @FXML
-    private void runSimulation(ActionEvent event){
+    private void runSimulation(ActionEvent event) throws SQLException {
         disableControls();
 
         hSimObject = new HanoiSim(diskNumber);
-        hSimObject.runSimulation();
+
+        long milliseconds = MethodTimer.timeSimulation(hSimObject);
         steps = hSimObject.getSteps();
+
+        Hanoi_DB.insertSteps(diskNumber,steps);
+        Hanoi_DB.insertSimTim(diskNumber,milliseconds);
 
         HanoiFileLogic analyzer = new HanoiFileLogic();
         String analysis = analyzer.analyzeFileData(steps);
