@@ -70,6 +70,23 @@ public class Hanoi_DB {
 
     }
 
+    public static String getAverageMilliseconds(int diskNum) throws SQLException{
+        Statement statement = conn.createStatement();
+        ResultSet resultSet =
+                statement.executeQuery("select simulations.diskNumber as \"Disk Number\", \n" +
+                        "avg(simulationTimer.time) as \"Average Milliseconds\"\n" +
+                        "from simulationTimer\n" +
+                        "inner join simulations\n" +
+                        "on simulations.diskNumber = simulationTimer.diskNumber\n" +
+                        "where simulations.diskNumber="+diskNum+"\n" +
+                        "group by simulations.diskNumber\n" +
+                        "order by \"Average Milliseconds\";");
+
+        String avgMilliseconds = resultSet.getString("Average Milliseconds");
+
+        return "Running Computational Average for "+diskNum+" disks: \n"+avgMilliseconds+" Milliseconds";
+    }
+
     private static boolean checkDisk(int diskNum) throws SQLException{
 
         boolean exists = false;
