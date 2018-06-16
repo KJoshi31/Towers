@@ -43,7 +43,6 @@ public class Hanoi_DB {
     }
 
     public static void insertSteps(int diskNum, String steps) throws SQLException{
-        if(checkDisk(diskNum) == false){
             //System.out.println("Disk Doesn't exist");
             String insertRecord = ("insert into simulations(diskNumber, steps) values (?,?)");
 
@@ -54,7 +53,7 @@ public class Hanoi_DB {
 
                 preparedStatement.executeUpdate();
             }
-        }
+
 
     }
 
@@ -87,7 +86,18 @@ public class Hanoi_DB {
         return "Running Computational Average for "+diskNum+" disks: \n"+avgMilliseconds+" Milliseconds";
     }
 
-    private static boolean checkDisk(int diskNum) throws SQLException{
+    public static String getSteps(int diskNum) throws SQLException{
+        System.out.println("steps from DB!");
+        Statement statement = conn.createStatement();
+        ResultSet resultSet =
+                statement.executeQuery("select steps from simulations where" +
+                        " diskNumber="+String.valueOf(diskNum));
+
+        String stepsFromDB = resultSet.getString("steps");
+        return stepsFromDB;
+    }
+
+    public static boolean checkDisk(int diskNum) throws SQLException{
 
         boolean exists = false;
 

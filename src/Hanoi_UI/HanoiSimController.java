@@ -77,9 +77,15 @@ public class HanoiSimController {
         hSimObject = new HanoiSim(diskNumber);
 
         long milliseconds = MethodTimer.timeSimulation(hSimObject);
-        steps = hSimObject.getSteps();
 
-        Hanoi_DB.insertSteps(diskNumber,steps);
+        if(Hanoi_DB.checkDisk(diskNumber)==false){
+            steps = hSimObject.getSteps();
+            Hanoi_DB.insertSteps(diskNumber,steps);
+        }else{
+            steps = Hanoi_DB.getSteps(diskNumber);
+        }
+
+
         Hanoi_DB.insertSimTim(diskNumber,milliseconds);
 
         HanoiFileLogic analyzer = new HanoiFileLogic();
