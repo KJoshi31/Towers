@@ -13,17 +13,23 @@ public class HanoiFileLogic {
 
     public static void exportSimConfig(List<Integer> configList, File filePath){
 
-        try(ObjectOutputStream outfile = new ObjectOutputStream(
-                new FileOutputStream(filePath)
-        );){
-            for (int i = 0; i<configList.size(); i++){
-                outfile.writeObject(configList.get(i));
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try(ObjectOutputStream outfile = new ObjectOutputStream(
+                        new FileOutputStream(filePath)
+                );){
+                    for (int i = 0; i<configList.size(); i++){
+                        outfile.writeObject(configList.get(i));
+                    }
+
+                }catch (IOException ex){
+
+                }
             }
+        });
 
-        }catch (IOException ex){
-
-        }
-
+        t.start();
 
         //System.out.println("export done");
 
