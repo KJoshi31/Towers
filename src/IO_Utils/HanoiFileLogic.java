@@ -13,17 +13,23 @@ public class HanoiFileLogic {
 
     public static void exportSimConfig(List<Integer> configList, File filePath){
 
-        try(ObjectOutputStream outfile = new ObjectOutputStream(
-                new FileOutputStream(filePath)
-        );){
-            for (int i = 0; i<configList.size(); i++){
-                outfile.writeObject(configList.get(i));
+        Thread saveSimConfigThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try(ObjectOutputStream outfile = new ObjectOutputStream(
+                        new FileOutputStream(filePath)
+                );){
+                    for (int i = 0; i<configList.size(); i++){
+                        outfile.writeObject(configList.get(i));
+                    }
+
+                }catch (IOException ex){
+
+                }
             }
+        });
 
-        }catch (IOException ex){
-
-        }
-
+        saveSimConfigThread.start();
 
         //System.out.println("export done");
 
@@ -92,16 +98,21 @@ public class HanoiFileLogic {
 
     private static void saveStepFile(String steps, File filepath){
 
-        try (DataOutputStream  outfile = new DataOutputStream (new FileOutputStream(filepath));)
-        {
-           outfile.writeUTF(steps.trim());
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Thread saveStepThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try (DataOutputStream  outfile = new DataOutputStream (new FileOutputStream(filepath));)
+                {
+                    outfile.writeUTF(steps.trim());
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
-
+        saveStepThread.start();
     }
 
     public String analyzeFileData(String fileStringParam) {
