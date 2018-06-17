@@ -13,7 +13,7 @@ public class HanoiFileLogic {
 
     public static void exportSimConfig(List<Integer> configList, File filePath){
 
-        Thread t = new Thread(new Runnable() {
+        Thread saveSimConfigThread = new Thread(new Runnable() {
             @Override
             public void run() {
                 try(ObjectOutputStream outfile = new ObjectOutputStream(
@@ -29,7 +29,7 @@ public class HanoiFileLogic {
             }
         });
 
-        t.start();
+        saveSimConfigThread.start();
 
         //System.out.println("export done");
 
@@ -98,16 +98,21 @@ public class HanoiFileLogic {
 
     private static void saveStepFile(String steps, File filepath){
 
-        try (DataOutputStream  outfile = new DataOutputStream (new FileOutputStream(filepath));)
-        {
-           outfile.writeUTF(steps.trim());
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Thread saveStepThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try (DataOutputStream  outfile = new DataOutputStream (new FileOutputStream(filepath));)
+                {
+                    outfile.writeUTF(steps.trim());
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
-
+        saveStepThread.start();
     }
 
     public String analyzeFileData(String fileStringParam) {
